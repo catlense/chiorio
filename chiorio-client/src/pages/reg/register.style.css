@@ -1,0 +1,32 @@
+.keyboard-container {
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.reg-btn {
+    padding: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: #eee;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+input.userName {
+    width: calc(100% - 200px);
+    height: 40px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
+}

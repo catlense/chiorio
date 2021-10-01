@@ -1,0 +1,17 @@
+{
+  "name": "chiorio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run-server": "node chiorio-server/app.js",
+    "run-client": "cd chiorio-client && npm start",
+    "start": "npm run run-server && npm run run-client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react-cookie": "^4.1.1"
+  }
+}

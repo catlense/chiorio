@@ -1,0 +1,46 @@
+.number-container {
+    max-width: 420px;
+    margin: 0 auto;
+}
+.number-container input {
+    width: calc(100% - 30px);
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.numbers .number {
+    width: 32px;
+    height: 32px;
+    border-radius: 500px;
+    padding: 10px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+    user-select: none;
+    cursor: pointer;
+    transition: background.2s;
+    
+}
+.numbers .number:hover {
+    background: rgb(206, 206, 206);
+}
+.numbers .number:active {
+    background: rgb(180, 180, 180);
+}

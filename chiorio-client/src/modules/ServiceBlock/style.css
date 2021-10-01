@@ -1,0 +1,37 @@
+.serviceBlock {
+    display: flex;
+    min-height: 60px;
+    border-radius: 15px;
+    background: rgb(240, 58, 58);
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+.serviceBlock input {
+    height: 24px;
+    width: 24px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.serviceBlock label {
+    user-select: none;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    margin-left: 20px;
+}
+.serviceBlock .sale {
+    margin-left: auto;
+    margin-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 18px;
+    background: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(240, 58, 58);
+}

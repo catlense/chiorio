@@ -1,0 +1,18 @@
+.logotype img {
+    max-height: 200px;
+}
+.services-blocks {
+    display: flex;
+    justify-content: space-around;
+}
+.services {
+    width: 600px;
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid #eee;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+button {
+    margin-top: 30px;
+}
