@@ -11,7 +11,7 @@ export default function Master(props) {
   return(
     <div className="master" onClick={() => setCookie('master', props.id)}>
       <Link to={`/service`}>
-        <img src={props.photo} alt={props.name} />
+        <img src={`http://localhost:8888${props.photo}`} alt={props.name} />
         <p>{props.name}</p>
       </Link>
     </div>

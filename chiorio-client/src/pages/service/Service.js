@@ -1,5 +1,6 @@
 import './service.style.css'
 import {useCookies} from 'react-cookie'
+import {useState, useEffect} from 'react'
 
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
@@ -7,17 +8,34 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import ServiceBlock from '../../modules/ServiceBlock/ServiceBlock'
 
 export default function Service() {
+  const [state, setState] = useState({error: null, isLoaded: false, items: []})
+  const {error, isLoaded, items} = state
+
+  const getInfo = () => {
+    fetch('http://localhost:8888/getServices')
+    .then(res => res.json())
+    .then(result => {
+      setState({isLoaded: true, items: result.response})
+    },
+    (error) => {
+      setState({isLoaded: false, error})
+    })
+
+
+    if(error) { return (<div>Ошибка: {error.message}</div>) }
+    else if(!isLoaded) {return(<div>Загрузка...</div>)}
+  }
+  
+  // eslint-disable-next-line
+  useEffect(() => getInfo(), [])
+
   // eslint-disable-next-line
   const [cookies, setCookie] = useCookies(['master']);
   return(
     <div className="services-container">
       <div className="services-blocks">
         <div className="services">
-          <ServiceBlock name="Стрижка" price="250" bonus="1" id="1" />
-          <ServiceBlock name="Стрижка" price="250" bonus="0" id="2" />
-          <ServiceBlock name="Стрижка" price="250" bonus="0" id="3" />
-          <ServiceBlock name="Стрижка" price="250" bonus="0" id="4" />
-          <ServiceBlock name="Стрижка" price="250" bonus="0" id="5" />
+          {items.map(res => {return <ServiceBlock name={res.name} price={res.price} bonus={res.bonus.toString()} key={res.uid} id={res.uid} />})}
         </div>
       </div>
       <Link to="/number"><button>Продолжить</button></Link>

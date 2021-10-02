@@ -12,6 +12,19 @@ import Register from './pages/reg/Register'
 
 document.title = 'Barbershop'
 
+// const [masters, setMasters] = useState({error: null, isLoaded: false, items: []})
+
+// fetch('http://localhost:8888/getMasters')
+// .then(res => res.json())
+// .then(result => {
+//   setMasters({isLoaded: true, items: result.response})
+// },
+// (error) => {
+//   setMasters({isLoaded: false, error})
+// })
+
+// const {error, isLoaded, items} = masters
+
 
 function App() {
   return (
