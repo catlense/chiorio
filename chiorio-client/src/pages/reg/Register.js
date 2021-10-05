@@ -51,7 +51,7 @@ export default function Register() {
                 <Button value="Б" />
                 <Button value="Ю" />
             </div>
-            <Link to="/order"><button onClick={() => {setCookie('username', name)}}>Продолжить</button></Link>
+            <Link to="/order"><button onClick={() => {setCookie('username', name); fetch(`http://localhost:8888/createClient/${cookies.phone}/${name}`)}}>Продолжить</button></Link>
         </div>
     )
 }

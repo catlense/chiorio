@@ -4,8 +4,8 @@ let Schema = mongoose.Schema
 let schema = new Schema({
     uid: Number,
     name: String,
-    price: Number,
-    bonus: Boolean
+    phone: String,
+    count: Number
 })
 
-module.exports = mongoose.model('service', schema)
+module.exports = mongoose.model('client', schema)

@@ -2,15 +2,17 @@ import './style.css'
 import {useCookies} from 'react-cookie'
 
 export default function ServiceBlock(props) {
-    const [cookies, setCookie, removeCookie] = useCookies(['service', 'price']);
+    const [cookies, setCookie] = useCookies(['service', 'price']);
     const changeInput = (e, p) => {
+        let total = String(cookies.service)
+        total = total === "undefined" ? '' : total
         if(e.target.checked) {
-            setCookie('service', p.name)
-            setCookie('price', +cookies.price + +p.price)
+            total += total.length > 0 ? ',' + p.id.toString() : p.id.toString()      
         } else {
-            removeCookie('service')
-            setCookie('price', +cookies.price - +p.price)
+            total = total.length > 1 ? total.replace(',' + p.id.toString(), '') : total.replace(p.id.toString(), '')
         }
+        setCookie('service', total)
+        console.log(total)
     }
 
     if(props.bonus === "false") {

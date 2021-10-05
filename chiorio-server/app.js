@@ -10,10 +10,49 @@ mongoose.connect('mongodb://127.0.0.1:27017/chiorio').then(() => console.log('Mo
 
 const Master = require('./models/Master')
 const Service = require('./models/Service')
+const Client = require('./models/Client')
 
 app.use(cors());
 app.options('*', cors());
 
+
+// Client module
+app.get('/createClient/:phone/:name', async(req, res) => {
+    const client = new Client({
+        uid: await Client.count() + 1,
+        name: req.params.name,
+        phone: req.params.phone,
+        count: 0
+    })
+
+    await client.save()
+
+    res.status(201).json({response: client})
+})
+
+app.get('/getClient/:phone', async(req, res) => {
+    return res.status(200).json({response: await Client.findOne({phone: req.params.phone})})
+})
+
+app.get('/addJoin/:phone', async(req, res) => {
+    const client = await Client.findOne({phone: req.params.phone})
+
+    if(!client) { return res.status(404).json({'response':'user not found'}) }
+
+    client.count += 1
+
+    await client.save()
+
+    res.status(200).json({'response': client})
+})
+
+app.get('/getSummary/:ids', async(req, res) => {
+    const services = await Service.find({uid: req.params.ids.toString().split(',')})
+    let summary = 0
+
+    services.forEach(element => summary += element.price)
+    res.status(200).json({response: summary})
+})
 
 // /service page functions
 
