@@ -26,10 +26,13 @@ export default function Select() {
   useEffect(() => getInfo(), [])
 
   return(
-    <div className="select">
-      {
-        items.map(master => {return (<Master key={master.uid} id={master.uid} name={master.name} photo={master.photo} />)})
-      }
+    <div>
+      <div className="select">
+        {
+          items.map(master => {return (<Master key={master.uid} id={master.uid} name={master.name} photo={master.photo} />)})
+        }
+      </div>
+      <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => window.history.go(-1)}>Назад</div>
     </div>
   )
 }

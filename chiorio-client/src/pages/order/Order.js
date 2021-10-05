@@ -74,19 +74,21 @@ export default function Order() {
                 Мастер: {master.name}
                 <br/>
                 <br/>
-                Клиент: {client.name}
+                Клиент: {client.name === null ? cookies.username : client.name}
                 <br/>
                 Количество посещений: {client.count + 1}
                 <br/>
                 <br/>
                 Сумма услуг: {service}
+                <br/><br/>
+                <b>{(client.count + 1 === 6) ? '6 посещение бесплатно!' : ''}</b>
             </p>
             <Link to="/home"><button onClick={() => {
+                fetch(`http://localhost:8888/addJoin/${client.phone}/${master.name}/${cookies.service}/${service}`);
                 removeCookie('master');
                 removeCookie('phone');
                 removeCookie('username');
-                removeCookie('service');
-                fetch(`http://localhost:8888/addJoin/${client.phone}`) }}>Оплачено</button></Link>
+                removeCookie('service')}}>Оплачено</button></Link>
         </div>
     )
 }

@@ -52,6 +52,7 @@ export default function Register() {
                 <Button value="Ю" />
             </div>
             <Link to="/order"><button onClick={() => {setCookie('username', name); fetch(`http://localhost:8888/createClient/${cookies.phone}/${name}`)}}>Продолжить</button></Link>
+            <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => window.history.go(-1)}>Назад</div>
         </div>
     )
 }

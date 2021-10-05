@@ -6,7 +6,7 @@ export default function Home() {
   return(
     <div className="main-container">
       <Router/>
-      <h1>Добро пожаловать в Чио-чио</h1>
+      <h1>Добро пожаловать в Чио-рио</h1>
       <p>экспресс парикмахерская</p>
       <Link to="/select"><button>Выбрать мастера</button></Link>
     </div>

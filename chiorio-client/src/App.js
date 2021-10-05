@@ -10,21 +10,9 @@ import Number from './pages/number/Number'
 import Order from './pages/order/Order'
 import Register from './pages/reg/Register'
 
+import Admin from './pages/admin/Admin'
+
 document.title = 'Barbershop'
-
-// const [masters, setMasters] = useState({error: null, isLoaded: false, items: []})
-
-// fetch('http://localhost:8888/getMasters')
-// .then(res => res.json())
-// .then(result => {
-//   setMasters({isLoaded: true, items: result.response})
-// },
-// (error) => {
-//   setMasters({isLoaded: false, error})
-// })
-
-// const {error, isLoaded, items} = masters
-
 
 function App() {
   return (
@@ -32,6 +20,18 @@ function App() {
       <Router>
         <Header/>
         <Switch>
+          <Route path="/admin/createMaster" component={() => <Admin/> } />
+          <Route path="/admin/editMaster" component={() => <Admin/> } />
+          <Route path="/admin/deleteMaster" component={() => <Admin/> } />
+
+          <Route path="/admin/createService" component={() => <Admin/> } />
+          <Route path="/admin/changeService" component={() => <Admin/> } />
+          <Route path="/admin/deleteService" component={() => <Admin/> } />
+
+          <Route path="/admin/export" component={() => <Admin/> } />
+          
+          <Route path="/admin" component={() => <Admin/> } />
+
           <Route path="/reg" component={() => <Register/> } />
           <Route path="/order" component={() => <Order/>} />
           <Route path="/number" component={() => <Number/>} />

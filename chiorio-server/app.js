@@ -11,6 +11,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/chiorio').then(() => console.log('Mo
 const Master = require('./models/Master')
 const Service = require('./models/Service')
 const Client = require('./models/Client')
+const Log = require('./models/Log')
 
 app.use(cors());
 app.options('*', cors());
@@ -34,7 +35,7 @@ app.get('/getClient/:phone', async(req, res) => {
     return res.status(200).json({response: await Client.findOne({phone: req.params.phone})})
 })
 
-app.get('/addJoin/:phone', async(req, res) => {
+app.get('/addJoin/:phone/:master/:ids/:servicePrice', async(req, res) => {
     const client = await Client.findOne({phone: req.params.phone})
 
     if(!client) { return res.status(404).json({'response':'user not found'}) }
@@ -42,6 +43,26 @@ app.get('/addJoin/:phone', async(req, res) => {
     client.count += 1
 
     await client.save()
+
+    let service = await Service.find({uid: req.params.ids.toString().split(',')})
+    let serviceName = ''
+    service.forEach(element => serviceName = serviceName + element.name + ',')
+    serviceName = serviceName.substring(0, serviceName.length - 1)
+
+    const log = await new Log({
+        uid: await Log.count() + 1,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+        master: req.params.master,
+        client: client.name,
+        phone: req.params.phone,
+        count: client.count,
+        service: serviceName,
+        servicePrice: req.params.servicePrice,
+        serviceCount: service.length,
+    })
+
+    await log.save()
 
     res.status(200).json({'response': client})
 })

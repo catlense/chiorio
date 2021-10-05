@@ -39,6 +39,7 @@ export default function Service() {
         </div>
       </div>
       <Link to="/number"><button>Продолжить</button></Link>
+      <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => window.history.go(-1)}>Назад</div>
     </div>
   )
 }
