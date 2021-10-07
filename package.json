@@ -8,7 +8,7 @@
     "run-client": "cd chiorio-client && npm start",
     "install-client": "cd chiorio-client && npm install",
     "install-server": "cd chiorio-server && npm install",
-    "install": "npm run install-client && npm run install-server && npm i pm2 -g",
+    "install": "npm run install-client && npm run install-server",
     "start": "forever start -c \"run-server\" && forever start -c \"run-client\""
   },
   "keywords": [],
