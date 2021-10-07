@@ -6,7 +6,10 @@
   "scripts": {
     "run-server": "node chiorio-server/app.js",
     "run-client": "cd chiorio-client && npm start",
-    "start": "npm run run-server && npm run run-client"
+    "install-client": "cd chiorio-client && npm install",
+    "install-server": "cd chiorio-server && npm install",
+    "install": "npm run install-client && npm run install-server && npm i pm2 -g",
+    "start": "forever start -c \"run-server\" && forever start -c \"run-client\""
   },
   "keywords": [],
   "author": "",
