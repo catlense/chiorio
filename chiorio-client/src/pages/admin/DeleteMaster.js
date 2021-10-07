@@ -48,7 +48,11 @@ export default function DeleteMaster() {
                     master.map(m => {return (<CustomOption key={`1${m._id}`} value={m.uid} name={m.name}/>)})
                 }
             </select>
-            <button onClick={() => fetch(`http://localhost:8888/master/delete/${uid}`).then(r => r.json()).then(res => setResult('Успешно!'))}>Удалить</button>
+            <button onClick={() =>
+                {
+                    fetch(`http://localhost:8888/master/delete/${uid}`).then(r => r.json()).then(res => setResult('Успешно!'));
+                    fetch('http://localhost:8888/fixdb')
+                }}>Удалить</button>
             <br/>
             <div>{result}</div>
         </div>

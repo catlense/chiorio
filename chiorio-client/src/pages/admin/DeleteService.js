@@ -58,11 +58,12 @@ export default function DeleteService() {
                     service.map(m => {return (<CustomOption key={`1${m._id}`} value={m.uid} name={m.name}/>)})
                 }
             </select>
-            <button onClick={
-                () => fetch(`http://localhost:8888/service/delete/${uid}`)
-                .then(r => r.json())
-                .then(res => setResult('удалена'))
-                }>Удалить</button>
+            <button onClick={() =>
+                {
+                    fetch(`http://localhost:8888/service/delete/${uid}`).then(r => r.json()).then(res => setResult('Успешно!'));
+                    fetch('http://localhost:8888/fixdb')
+                }}>Удалить</button>
+
             <br/>
             <div>{name + ' ' + result}</div>
         </div>

@@ -20,6 +20,8 @@ import CreateService from './pages/admin/CreateService'
 import EditService from './pages/admin/EditService'
 import DeleteService from './pages/admin/DeleteService'
 
+import Export from './pages/admin/Export'
+
 document.title = 'Barbershop'
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
           <Route path="/admin/editService" component={() => <EditService/> } />
           <Route path="/admin/deleteService" component={() => <DeleteService/> } />
 
-          <Route path="/admin/export" component={() => <Admin/> } />
+          <Route path="/admin/export" component={() => <Export/> } />
           
           <Route path="/admin" component={() => <Admin/> } />
 

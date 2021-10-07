@@ -50,6 +50,73 @@ app.get('/service/delete/:uid', async(req, res) => {
     res.status(200).json({response: await Service.deleteOne({uid: req.params.uid})})
 })
 
+app.get('/fixdb', async(req, res) => {
+    const master = await Master.find({})
+    const service = await Service.find({})
+    const client = await Client.find({})
+
+    master.forEach(async(m, i) => {
+        m.uid = i + 1
+
+        await m.save()
+    })
+
+    service.forEach(async(m, i) => {
+        m.uid = i + 1
+
+        await m.save()
+    })
+
+    client.forEach(async(m, i) => {
+        m.uid = i + 1
+
+        await m.save()
+    })
+
+    res.status(200).json({response: 'dbs fixed'})
+
+})
+
+app.get('/export', async(req, res) => {
+    const fs = require('fs')
+    const path = require('path')
+    const json2csv = require('json2csv').parse
+
+    const convertCsvToXlsx = require('@aternus/csv-to-xlsx');
+
+    const log = await Log.find({})
+
+    const date = new Date().toLocaleDateString().replace('.', '-').replace('.', '-') + '.' + new Date().toLocaleTimeString().replace(':', '-').replace(':', '-')
+
+    const fields = ['uid', 'date', 'time', 'master', 'client', 'phone', 'count',
+                    'service', 'serviceCount', 'servicePrice']
+
+    let csv
+
+    try {
+        csv = json2csv(log, {fields}, {withBOM: true})
+    } catch(err) {
+        res.status(500).json({err})
+    }
+
+    const filePath = path.join(__dirname, 'exports', 'export-' + date + '.csv')
+    fs.writeFile(filePath, csv, (err) => {
+        if(err) {
+            return res.status(500).json({err})
+        } else {
+            setTimeout(function () {
+                fs.unlinkSync(filePath); // delete this file after 30 seconds
+            }, 30000)
+            let source = filePath
+            let destination = path.join(__dirname, 'exports', 'export-' + date + '.xlsx')
+
+            convertCsvToXlsx(source, destination)
+            res.status(201).json({filePath: path.join(__dirname, 'exports', 'export-' + date + '.xlsx')})
+        }
+    })
+
+})
+
 
 // Client module
 app.get('/createClient/:phone/:name', async(req, res) => {
