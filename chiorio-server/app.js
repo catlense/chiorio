@@ -17,6 +17,40 @@ app.use(cors());
 app.options('*', cors());
 
 
+// Admin
+
+app.get('/master/edit/:uid/:name/:photo', async(req, res) => {
+    const master = await Master.findOne({uid: +req.params.uid})
+
+    master.name = req.params.name
+    master.photo = '/img/' + req.params.photo
+
+    await master.save()
+
+    res.status(200).json({response: master})
+})
+
+app.get('/master/delete/:uid', async(req, res) => {
+    res.status(200).json({response: await Master.deleteOne({uid: req.params.uid})})
+})
+
+app.get('/service/edit/:uid/:name/:price/:bonus', async(req, res) => {
+    const service = await Service.findOne({uid: req.params.uid})
+
+    service.name = req.params.name
+    service.price = req.params.price
+    service.bonus = req.params.bonus
+
+    await service.save()
+
+    res.status(200).json({response: service})
+})
+
+app.get('/service/delete/:uid', async(req, res) => {
+    res.status(200).json({response: await Service.deleteOne({uid: req.params.uid})})
+})
+
+
 // Client module
 app.get('/createClient/:phone/:name', async(req, res) => {
     const client = new Client({
@@ -90,7 +124,7 @@ app.get('/createService/:name/:price/:bonus', async(req, res) => {
         uid: await Service.count() + 1,
         name: req.params.name,
         price: req.params.price,
-        bonus: !!req.params.bonus
+        bonus: req.params.bonus
     })
 
     await service.save()
@@ -115,7 +149,7 @@ app.get('/createMaster/:name/:photo', async(req, res) => {
     const master = new Master({
         uid: await Master.count() + 1,
         name: req.params.name,
-        photo: req.params.photo
+        photo: '/img/' + req.params.photo
     })
 
     await master.save()

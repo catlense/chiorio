@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const style = {
@@ -20,7 +21,7 @@ export default function Admin() {
             <Link to="/admin/deleteMaster" style={style.link}>Удалить мастера</Link><br/>
             <hr style={style.hr} />
             <Link to="/admin/createService" style={style.link}>Создать услугу</Link><br/>
-            <Link to="/admin/changeService" style={style.link}>Изменить услугу</Link><br/>
+            <Link to="/admin/editService" style={style.link}>Изменить услугу</Link><br/>
             <Link to="/admin/deleteService" style={style.link}>Удалить услугу</Link><br/>
             <hr style={style.hr} />
             <Link to="/admin/export" style={style.link}>Выгрузка базы</Link>

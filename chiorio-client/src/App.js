@@ -12,6 +12,14 @@ import Register from './pages/reg/Register'
 
 import Admin from './pages/admin/Admin'
 
+import CreateMaster from './pages/admin/CreateMaster'
+import EditMaster from './pages/admin/EditMaster'
+import DeleteMaster from './pages/admin/DeleteMaster'
+
+import CreateService from './pages/admin/CreateService'
+import EditService from './pages/admin/EditService'
+import DeleteService from './pages/admin/DeleteService'
+
 document.title = 'Barbershop'
 
 function App() {
@@ -20,13 +28,13 @@ function App() {
       <Router>
         <Header/>
         <Switch>
-          <Route path="/admin/createMaster" component={() => <Admin/> } />
-          <Route path="/admin/editMaster" component={() => <Admin/> } />
-          <Route path="/admin/deleteMaster" component={() => <Admin/> } />
+          <Route path="/admin/createMaster" component={() => <CreateMaster/> } />
+          <Route path="/admin/editMaster" component={() => <EditMaster/> } />
+          <Route path="/admin/deleteMaster" component={() => <DeleteMaster/> } />
 
-          <Route path="/admin/createService" component={() => <Admin/> } />
-          <Route path="/admin/changeService" component={() => <Admin/> } />
-          <Route path="/admin/deleteService" component={() => <Admin/> } />
+          <Route path="/admin/createService" component={() => <CreateService/> } />
+          <Route path="/admin/editService" component={() => <EditService/> } />
+          <Route path="/admin/deleteService" component={() => <DeleteService/> } />
 
           <Route path="/admin/export" component={() => <Admin/> } />
           

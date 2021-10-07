@@ -63,6 +63,7 @@ export default function Order() {
         getMaster()
         getClient()
         getSummary()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // eslint-disable-next-line
@@ -88,7 +89,7 @@ export default function Order() {
                 removeCookie('master');
                 removeCookie('phone');
                 removeCookie('username');
-                removeCookie('service')}}>Оплачено</button></Link>
+                removeCookie('service')}}>{(client.count + 1 === 6) ? 'Бесплатно' : 'Оплачено'}</button></Link>
         </div>
     )
 }
