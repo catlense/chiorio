@@ -46,7 +46,7 @@ export default function Number() {
                     <div className="number" value="0" onClick={()=>{ setPhone(phone + '0'); }}>0</div>
                     <div className="number" value="<" onClick={()=>{ setPhone(phone.substring(0, phone.length - 1));} }>&lt;</div>
                 </div>
-                <Link to={isReg ? '/order' : '/reg'}><button onClick={() => setCookie('phone', phone)}>{isReg ? 'Продолжить' : 'Зарегистрироваться'}</button></Link>
+                <a href={isReg ? '/order' : '/reg'}><button onClick={() => setCookie('phone', phone)}>{isReg ? 'Продолжить' : 'Зарегистрироваться'}</button></a>
                 <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => window.history.go(-1)}>Назад</div>
             </div>
         )

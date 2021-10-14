@@ -18,7 +18,7 @@ export default function Header() {
                 removeCookie('phone');
                 removeCookie('username');
                 removeCookie('service'); }}>
-            <Link to="/home"><img src={logo} alt="Chiorio logotype" /></Link>
+            <img src={logo} alt="Chiorio logotype" />
           </div>
         </div>
       </div>
