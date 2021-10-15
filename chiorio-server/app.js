@@ -32,8 +32,47 @@ setInterval(async() => {
 
         const date = new Date().toLocaleDateString().replace('.', '-').replace('.', '-') + '.' + new Date().toLocaleTimeString().replace(':', '-').replace(':', '-')
 
-        const fields = ['uid', 'date', 'time', 'master', 'client', 'phone', 'count',
-            'service', 'serviceCount', 'servicePrice']
+        const fields = [
+            {
+                label: 'Порядковый номер',
+                value: 'uid'
+            },
+            {
+                label: 'Дата',
+                value: 'date'
+            },
+            {
+                label: 'Время',
+                value: 'time'
+            },
+            {
+                label: 'Имя мастера',
+                value: 'master'
+            },
+            {
+                label: 'Имя клиента',
+                value: 'client'
+            },
+            {
+                label: 'Номер телефона',
+                value: 'phone'
+            },
+            {
+                label: 'Посещение',
+                value: 'count'
+            },
+            {
+                label: 'Услуги',
+                value: 'service'
+            },
+            {
+                label: 'Количество услуг',
+                value: 'serviceCount'
+            },
+            {
+                label: 'Стоимость услуг',
+                value: 'servicePrice'
+            }]
 
         let csv
 
@@ -170,8 +209,46 @@ app.get('/export', async (req, res) => {
 
     const date = new Date().toLocaleDateString().replace('.', '-').replace('.', '-') + '.' + new Date().toLocaleTimeString().replace(':', '-').replace(':', '-')
 
-    const fields = ['uid', 'date', 'time', 'master', 'client', 'phone', 'count',
-        'service', 'serviceCount', 'servicePrice']
+    const fields = [{
+        label: 'Порядковый номер',
+        value: 'uid'
+    },
+    {
+        label: 'Дата',
+        value: 'date'
+    },
+    {
+        label: 'Время',
+        value: 'time'
+    },
+    {
+        label: 'Имя мастера',
+        value: 'master'
+    },
+    {
+        label: 'Имя клиента',
+        value: 'client'
+    },
+    {
+        label: 'Номер телефона',
+        value: 'phone'
+    },
+    {
+        label: 'Посещение',
+        value: 'count'
+    },
+    {
+        label: 'Услуги',
+        value: 'service'
+    },
+    {
+        label: 'Количество услуг',
+        value: 'serviceCount'
+    },
+    {
+        label: 'Стоимость услуг',
+        value: 'servicePrice'
+    }]
 
     let csv
 
