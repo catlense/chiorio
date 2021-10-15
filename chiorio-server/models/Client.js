@@ -5,7 +5,8 @@ let schema = new Schema({
     uid: Number,
     name: String,
     phone: String,
-    count: Number
+    count: Number,
+    lastJoin: Number
 })
 
 module.exports = mongoose.model('client', schema)

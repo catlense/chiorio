@@ -9,6 +9,11 @@ export default function Register() {
     // eslint-disable-next-line
     const [cookies, setCookie] = useCookies(['master', 'phone', 'username']);
     const Button = (props) => {
+        if(props.value === "<") {
+            return (
+                <div className="reg-btn" onClick={() => setName(name.substring(0, name.length - 1))}>{props.value}</div>
+            )
+        }
         return (
             <div className="reg-btn" onClick={() => setName(name + props.value)}>{props.value}</div>
         )
@@ -50,6 +55,7 @@ export default function Register() {
                 <Button value="Ь" />
                 <Button value="Б" />
                 <Button value="Ю" />
+                <Button value="<" />
             </div>
             <a href="/order"><button onClick={() => {setCookie('username', name); fetch(`http://localhost:8888/createClient/${cookies.phone}/${name}`)}}>Продолжить</button></a>
             <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => window.history.go(-1)}>Назад</div>

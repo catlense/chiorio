@@ -4,10 +4,6 @@ import {useState, useEffect} from 'react'
 
 import {useCookies} from 'react-cookie'
 
-// eslint-disable-next-line
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-
-
 export default function Number() {
     const [phone, setPhone] = useState("8")
     const [isReg, setReg] = useState(false)
@@ -26,7 +22,7 @@ export default function Number() {
     }, [phone])
         
     // eslint-disable-next-line
-    const [cookies, setCookie] = useCookies(['phone']);
+    const [cookies, setCookie, removeCookie] = useCookies(['phone', 'service']);
     
         return(
             <div className="number-container">
@@ -47,7 +43,7 @@ export default function Number() {
                     <div className="number" value="<" onClick={()=>{ setPhone(phone.substring(0, phone.length - 1));} }>&lt;</div>
                 </div>
                 <a href={isReg ? '/order' : '/reg'}><button onClick={() => setCookie('phone', phone)}>{isReg ? 'Продолжить' : 'Зарегистрироваться'}</button></a>
-                <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => window.history.go(-1)}>Назад</div>
+                <div style={{textAlign: 'center', marginTop: 50, cursor: 'pointer'}} onClick={() => {window.history.go(-1); removeCookie('service');}}>Назад</div>
             </div>
         )
 

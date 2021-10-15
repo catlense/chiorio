@@ -20,7 +20,7 @@ app.options('*', cors());
 
 setInterval(async() => {
 
-    if (new Date().getHours() === 2 && new Date().getMinutes() === 9) {
+    if (new Date().getHours() === 19 && new Date().getMinutes() === 50) {
 
         const fs = require('fs')
         const path = require('path')
@@ -70,7 +70,7 @@ setInterval(async() => {
 
         let mail = {
             from: "maximum@catlense.ru",
-            to: "max@voronin.xyz",
+            to: "max@voronin.xyz, oa1975@yandex.ru",
             subject: `Экспорт базы данных на ${new Date().getDay()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
             text: `${new Date().getDay()}.${new Date().getMonth()}.${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
             html: "работает.",
@@ -88,11 +88,9 @@ setInterval(async() => {
 
             smtpTransport.close()
         })
-    } else console.log('f');
+    }
 
 }, 60000);
-
-console.log(new Date().getHours() === 2 && new Date().getMinutes() === 9)
 
 // Admin
 
@@ -131,6 +129,7 @@ app.get('/fixdb', async (req, res) => {
     const master = await Master.find({})
     const service = await Service.find({})
     const client = await Client.find({})
+    const log = await Log.find({})
 
     master.forEach(async (m, i) => {
         m.uid = i + 1
@@ -145,6 +144,12 @@ app.get('/fixdb', async (req, res) => {
     })
 
     client.forEach(async (m, i) => {
+        m.uid = i + 1
+
+        await m.save()
+    })
+
+    log.forEach(async (m, i) => {
         m.uid = i + 1
 
         await m.save()
@@ -218,7 +223,10 @@ app.get('/addJoin/:phone/:master/:ids/:servicePrice', async (req, res) => {
 
     if (!client) { return res.status(404).json({ 'response': 'user not found' }) }
 
-    client.count += 1
+    if(new Date(client.lastJoin + 15 * 60000) <= Date.now()) {
+        client.count += 1
+        client.lastJoin = Date.now()
+    }
 
     await client.save()
 
