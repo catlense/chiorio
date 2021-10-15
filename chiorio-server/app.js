@@ -218,12 +218,24 @@ app.get('/getClient/:phone', async (req, res) => {
     return res.status(200).json({ response: await Client.findOne({ phone: req.params.phone }) })
 })
 
+app.get('/exportFix', async(req, res) => {
+    const log = await Log.find({})
+
+    log.forEach(async (m, i) => {
+        m.count = m.count + 1
+
+        await m.save()
+    })
+
+    res.status(200).json("OK")
+})
+
 app.get('/addJoin/:phone/:master/:ids/:servicePrice', async (req, res) => {
     const client = await Client.findOne({ phone: req.params.phone })
 
     if (!client) { return res.status(404).json({ 'response': 'user not found' }) }
 
-    if(new Date(client.lastJoin + 15 * 60000) <= Date.now()) {
+    if(new Date(client.lastJoin + 1 * 60000) <= Date.now()) {
         client.count += 1
         client.lastJoin = Date.now()
     }
@@ -242,7 +254,7 @@ app.get('/addJoin/:phone/:master/:ids/:servicePrice', async (req, res) => {
         master: req.params.master,
         client: client.name,
         phone: req.params.phone,
-        count: client.count,
+        count: client.count + 1,
         service: serviceName,
         servicePrice: req.params.servicePrice,
         serviceCount: service.length,
